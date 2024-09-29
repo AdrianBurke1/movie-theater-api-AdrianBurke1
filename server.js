@@ -9,7 +9,7 @@ const show = require('./routes/shows')
 const user = require('./routes/users')
 
 app.use('/users', user)
-app.show('/shows', show)
+app.use('/shows', show)
 
 const startServer = async () => {
     await seed(); 
