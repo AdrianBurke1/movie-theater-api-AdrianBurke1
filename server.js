@@ -1,11 +1,20 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-app.get('/', (req,res) => {
-    res.send('Hello, Express!');
-});
+const seed = require('./db/seed')
 
+app.use(express.json())
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+const show = require('./routes/shows')
+const user = require('./routes/users')
+
+app.use('/users', user)
+app.show('/shows', show)
+
+const startServer = async () => {
+    await seed(); 
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  };
+  startServer();
